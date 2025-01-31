@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
     {
         cout << "Hello from the child process!" << endl;
         /* TODO: PRINT THE PARENT PID value: "The parent process ID is $ID" */
-        cout << "The parent process ID is $ID " << getppid() << endl;
+        cout << "The parent process ID is " << getppid() << endl;
 
         if (option % 2 == 0) // if the option number is even, execute the command ls -l and terminate normally
         {
@@ -53,12 +53,12 @@ int main(int argc, char *argv[])
         int status;
 
         /* TODO: WAIT FOR CHILD PROCESS TO FINISH */
-        wait(&status);
+        waitpid(pid, &status, 0);
 
         cout << "\nHello from the parent process!" << endl;
 
         /* TODO: PRINT THE CHILD PID value: "The child process ID is $ID" */
-        cout << "The child process ID is $ID " << getpid() << endl;
+        cout << "The child process ID is " << getpid() << endl;
 
         if (WIFEXITED(status)) {
             cout << "The child process exited normally" << endl;
